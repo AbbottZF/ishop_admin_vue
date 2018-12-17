@@ -1,10 +1,10 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120px">
-      <el-form-item label="Activity name">
+      <el-form-item label="Input">
         <el-input v-model="form.name"/>
       </el-form-item>
-      <el-form-item label="Activity zone">
+      <el-form-item label="Select">
         <el-select v-model="form.region" placeholder="please select your zone">
           <el-option label="Zone one" value="shanghai"/>
           <el-option label="Zone two" value="beijing"/>

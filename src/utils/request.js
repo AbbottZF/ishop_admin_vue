@@ -8,6 +8,7 @@ const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
   timeout: 5000 // 请求超时时间
 })
+console.log(service);
 // request拦截器
 service.interceptors.request.use(
   config => {
@@ -18,7 +19,7 @@ service.interceptors.request.use(
   },
   error => {
     // Do something with request error
-    console.log(error) // for debug
+    console.log('-1-',error) // for debug
     Promise.reject(error)
   }
 )
@@ -30,7 +31,8 @@ service.interceptors.response.use(
      * code为非20000是抛错 可结合自己业务进行修改
      */
     const res = response.data
-    if (res.code !== 1) {
+    console.log(res);
+    if (res.code !== 20000) {
       Message({
         message: res.msg,
         type: 'error',
@@ -59,7 +61,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('----err' + error) // for debug
+    console.log('-2-' + error) // for debug
     Message({
       message: error.message,
       type: 'error',

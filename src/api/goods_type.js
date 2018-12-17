@@ -1,7 +1,16 @@
 import request from '@/utils/request'
 
+export function getpage(page){
+    return request({
+        url:'/goods_type/getpage',
+        method:'post',
+        data:{
+            page:page
+        }
+    })
+}
+
 export function login(username, password) {
-  console.log('---login--');
   return request({
     url: '/user/login',
     method: 'post',

@@ -58,7 +58,30 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  {
+    path:'/goods_type',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'goods_type',
+        component: () => import('@/views/goods_type/index'),
+        meta: { title: '商品类型', icon: 'form' }
+      }
+    ]
+  },
+  {
+    path:'/tabs',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'tabs',
+        component: () => import('@/views/tabs/index'),
+        meta: { title: '列表页', icon: 'form' }
+      }
+    ]
+  },
   {
     path: '/form',
     component: Layout,
@@ -67,7 +90,7 @@ export const constantRouterMap = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        meta: { title: '表单页', icon: 'form' }
       }
     ]
   },
