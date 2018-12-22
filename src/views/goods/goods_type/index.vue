@@ -7,8 +7,8 @@
         <el-option v-for="item in formData.parent" :key="item" :label="item" :value="item">
         </el-option>
       </el-select>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="onSearch">搜索</el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" @click="create" type="primary" icon="el-icon-plus">新增</el-button>
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="onSearch">搜索</el-button>
+      <el-button class="filter-item" style="margin-left: 10px;" @click="createInfo" type="primary" icon="el-icon-plus">新增</el-button>
     </div>
     <el-table ref="multipleTable" :data="goods_list" tooltip-effect="dark" style="width: 100%;margin: 15px;" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
@@ -52,19 +52,30 @@
           name: '',
           region: ''
         },
-        goods_list: [{
-          index:1,
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
-          status_text:'正常',
-          sort:1,
-          action:'正常',
-        }],
+        goods_list: [
+        //   {
+        //   index:1,
+        //   date: '2016-05-03',
+        //   name: '王小虎',
+        //   address: '上海市普陀区金沙江路 1518 弄',
+        //   status_text:'正常',
+        //   sort:1,
+        //   action:'正常',
+        // },{
+        //   index:1,
+        //   date: '2016-05-03',
+        //   name: '王小虎',
+        //   address: '上海市普陀区金沙江路 1518 弄',
+        //   status_text:'正常',
+        //   sort:1,
+        //   action:'正常',
+        // }
+        ],
         multipleSelection: []
       }
     },
     methods: {
+      createInfo(){},
       handleSizeChange(){},
       handleCurrentChange(){},
       handleSizeChange(){},

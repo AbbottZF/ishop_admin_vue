@@ -14,6 +14,8 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
+    "@antv/data-set": "^0.10.1",
+    "@antv/g2": "^3.4.6",
     "axios": "^0.18.0",
     "element-ui": "2.4.6",
     "js-cookie": "2.2.0",
@@ -22,6 +24,7 @@
     "qs": "^6.6.0",
     "vue": "2.5.17",
     "vue-axios": "^2.1.4",
+    "vue-count-to": "^1.0.13",
     "vue-router": "3.0.1",
     "vuex": "3.0.1"
   },

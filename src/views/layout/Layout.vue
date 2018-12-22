@@ -2,9 +2,9 @@
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside"/>
     <sidebar class="sidebar-container"/>
-    <div class="main-container">
-      <navbar/>
-      <app-main/>
+    <div class="main-container" style="background-color: #e2e2e2;">
+      <navbar style=""/>
+      <app-main style="background-color:rgb(255, 255, 255); border-radius: 6px; padding: 20px; margin: 15px;"/>
     </div>
   </div>
 </template>

@@ -1,37 +1,28 @@
 <template>
-  <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">IShop</h3>
+  <div class="login-container" style="background-size: cover;background-image: url(src/assets/images/backup.jpg);">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form login-form-add" auto-complete="on" label-position="left">
+      <h3 class="title">登 录</h3>
       <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="username" />
+        <span class="svg-container"><svg-icon icon-class="user" /></span>
+        <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on" placeholder="账号" />
       </el-form-item>
       <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          :type="pwdType"
-          v-model="loginForm.password"
-          name="password"
-          auto-complete="on"
-          placeholder="password"
-          @keyup.enter.native="handleLogin" />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon icon-class="eye" />
-        </span>
+        <span class="svg-container"><svg-icon icon-class="password" /></span>
+        <el-input :type="pwdType" v-model="loginForm.password" name="password" auto-complete="on" placeholder="密码" @keyup.enter.native="handleLogin" />
+        <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
       </el-form-item>
       <el-form-item>
         <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
           登 录
         </el-button>
       </el-form-item>
-      <!-- <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: admin</span>
-      </div> -->
+      <div class="tips">
+        <span style="margin-right:20px;"></span>
+        <span></span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: fixed; left: 0px; right: 0px; bottom: 20px;">
+        <div style="font-size: 13px; color: rgb(255, 255, 255); line-height: 1.5; text-align: right;">Nothinggoon © 2018 版权所有</div>
+      </div>
     </el-form>
   </div>
 </template>
@@ -133,14 +124,23 @@ $light_gray:#eee;
     border-radius: 5px;
     color: #454545;
   }
+  .el-input input {
+      background: transparent;
+      border: 0px;
+      -webkit-appearance: none;
+      border-radius: 0px;
+      padding: 12px 5px 12px 15px;
+      color: #606266;
+      height: 47px;
+  }
 }
 
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 $bg:#2d3a4b;
-$dark_gray:#889aa4;
-$light_gray:#eee;
+$dark_gray:#606266;
+$light_gray:#606266;
 .login-container {
   position: fixed;
   height: 100%;
@@ -154,6 +154,14 @@ $light_gray:#eee;
     max-width: 100%;
     padding: 35px 35px 15px 35px;
     margin: 120px auto;
+  }
+  .login-form-add{
+    margin-top: 350px;folat:right;
+    border-radius: 6px;
+    background-color:#fff;
+    color:#00ff00;
+    margin-right: 200px;
+    width: 450px;
   }
   .tips {
     font-size: 14px;

@@ -56,19 +56,19 @@
 
     methods: {
       onSubmit() {
-        console.log('submit!');
+        console.log('submit!')
       },
       toggleSelection(rows) {
         if (rows) {
           rows.forEach(row => {
-            this.$refs.multipleTable.toggleRowSelection(row);
+            this.$refs.multipleTable.toggleRowSelection(row)
           });
         } else {
-          this.$refs.multipleTable.clearSelection();
+          this.$refs.multipleTable.clearSelection()
         }
       },
       handleSelectionChange(val) {
-        this.multipleSelection = val;
+        this.multipleSelection = val
       }
     }
   }

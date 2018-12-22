@@ -14,11 +14,12 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      // config.headers['X-Token'] = getToken()
     }
-    if(config.method  === 'post'){
-      config.data = qs.stringify(config.data);
+    if(config.method === 'post'){
+      config.data = qs.stringify(config.data)
     }
+    config.headers['X-Requested-With'] = 'XMLHttpRequest'
     return config
   },
   (error) => {
@@ -29,9 +30,8 @@ service.interceptors.request.use(
 // response 拦截器
 service.interceptors.response.use(
   response => {
-    /**code为非20000是抛错 可结合自己业务进行修改**/
-    const res = response.data
-    if (res.code !== 20000) {
+    const res = JSON.parse(response.data)
+    if (res.code !== 1) {
       Message({
         message: res.msg,
         type: 'error',
@@ -56,10 +56,11 @@ service.interceptors.response.use(
       }
       return Promise.reject('error')
     } else {
-      return response.data
+      return res
     }
   },
   (error) => {
+    console.log('error',error);
     Message({
       message: error.message,
       type: 'error',
