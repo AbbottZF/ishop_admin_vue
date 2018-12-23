@@ -10,15 +10,15 @@
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="onSearch">搜索</el-button>
       <el-button class="filter-item" style="margin-left: 10px;" @click="createInfo" type="primary" icon="el-icon-plus">新增</el-button>
     </div>
-    <el-table ref="multipleTable" :data="goods_list" tooltip-effect="dark" style="width: 100%;margin: 15px;" @selection-change="handleSelectionChange">
+    <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%;margin: 15px;" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="index" label="序号" width="120"/>
+      <el-table-column prop="id" label="序号" width="120"/>
       <el-table-column prop="name" label="名称" width="120"/>
-      <el-table-column prop="address" label="地址" show-overflow-tooltip/>
+      <el-table-column prop="code" label="编号" show-overflow-tooltip/>
       <el-table-column prop="sort" label="排序"/>
-      <el-table-column prop="status_text" label="状态"/>
-      <el-table-column label="录入时间" width="120">
-        <template slot-scope="scope">{{ scope.row.date }}</template>
+      <el-table-column prop="status" label="状态"/>
+      <el-table-column prop="create_time" label="录入时间" width="120">
+        <!-- <template slot-scope="scope">{{ scope.row.date }}</template> -->
       </el-table-column>
       <el-table-column label="操作" align="center" width="300" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -28,8 +28,9 @@
         </template>
       </el-table-column>
     </el-table>
-    <div class="pagination-container" style="margin: 5px 10px 10px 10px;text-align:left;padding-left:0px;">
-      <el-pagination background @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="page" :page-sizes="[10,20,30, 50]" :page-size="limit" layout="total, sizes, prev, pager, next, jumper" :total="total">
+    <div v-if="total > limit" class="pagination-container" style="margin: 5px 10px 10px 10px;text-align:left;padding-left:0px;">
+      <el-pagination background @current-change="currentChange"
+        :current-page.sync="current" :page-size="limit" layout="prev, pager, next, jumper" :total="total">
       </el-pagination>
     </div>
   </div>
@@ -37,52 +38,41 @@
 
 <script>
   export default {
-    mounted(){
-      this.initData();
+    created(){
+      this.fetchData();
     },
     data() {
       return {
         formData:{
           name:'',parent_id:'',parent:[]
         },
-        page:1,
+        current:1,
         limit:15,
-        total:100,
-        formInline: {
-          name: '',
-          region: ''
-        },
-        goods_list: [
-        //   {
-        //   index:1,
-        //   date: '2016-05-03',
-        //   name: '王小虎',
-        //   address: '上海市普陀区金沙江路 1518 弄',
-        //   status_text:'正常',
-        //   sort:1,
-        //   action:'正常',
-        // },{
-        //   index:1,
-        //   date: '2016-05-03',
-        //   name: '王小虎',
-        //   address: '上海市普陀区金沙江路 1518 弄',
-        //   status_text:'正常',
-        //   sort:1,
-        //   action:'正常',
-        // }
-        ],
-        multipleSelection: []
+        total:0,
+        list: [],
+        multipleSelection: [],
       }
     },
     methods: {
       createInfo(){},
-      handleSizeChange(){},
-      handleCurrentChange(){},
-      handleSizeChange(){},
-      initData(){
-      },
       onSearch() {
-          console.log('---------');
+        this.fetchData()
+      },
+      currentChange(val){
+        if(val !== this.current){
+          this.fetchData()
+        }
+      },
+      fetchData(){
+        this.$store.dispatch('getPage', 1).then(res => {
+          let data = res.data
+          this.list = data.data
+          this.current_page = data.current_page
+          this.total = data.total
+          this.limit = data.per_page
+        }).catch(() => {
+
+        })
       },
       toggleSelection(rows) {
         if (rows) {

@@ -4,13 +4,14 @@
     <sidebar class="sidebar-container"/>
     <div class="main-container" style="background-color: #e2e2e2;">
       <navbar style=""/>
+      <tags-view/>
       <app-main style="background-color:rgb(255, 255, 255); border-radius: 6px; padding: 20px; margin: 15px;"/>
     </div>
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from './components'
+import { Navbar, Sidebar, AppMain, TagsView} from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
@@ -18,7 +19,8 @@ export default {
   components: {
     Navbar,
     Sidebar,
-    AppMain
+    AppMain,
+    TagsView
   },
   mixins: [ResizeMixin],
   computed: {

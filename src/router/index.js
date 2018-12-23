@@ -6,23 +6,33 @@ Vue.use(Router);
 import Layout from '../views/layout/Layout';
 
 export const constantRouterMap = [
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path*',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
   {
-    path: '/dashboard',
+    path: '',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
+    redirect: 'dashboard',
     children: [{
-      path: 'index',
+      path: 'dashboard',
       component: () => import('@/views/dashboard/index'),
       name: 'Dashboard',
       meta: { title: '首页', icon: 'dashboard', noCache: true }
     }]
   },
   {
-    path:'/goods',
+    path:'/',
     component:Layout,
     name:'Goods',
     meta:{title:'商城管理',icon:'shopping'},
@@ -37,8 +47,18 @@ export const constantRouterMap = [
         path: 'goods_type',
         name: 'Tree',
         component: () => import('@/views/goods/goods_type/index'),
-        meta: { title: '商品类型'}
-      }
+        meta: { title: '商品类型'},
+        alwaysShow: true,
+        children:[
+          {
+            path: 'goods_type_add',
+            name: 'goods_type_add',
+            hiddens: false,
+            component: () => import('@/views/goods/goods_type/add'),
+            meta: { title: '新增'}
+          }
+        ]
+      },
     ]
   },
   {

@@ -5,7 +5,7 @@ export function getpage(page){
         url:'/goods_type/getpage',
         method:'post',
         data:{
-            page:page
+            page:1
         }
     })
 }
