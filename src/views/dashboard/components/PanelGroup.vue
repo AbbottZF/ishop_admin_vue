@@ -75,7 +75,7 @@ export default {
     position: relative;
     overflow: hidden;
     color: #666;
-    background: #e6e6e6;
+    background: #fff;
     box-shadow: 4px 4px 40px rgba(0, 0, 0, .05);
     border-color: rgba(0, 0, 0, .05);
     &:hover {

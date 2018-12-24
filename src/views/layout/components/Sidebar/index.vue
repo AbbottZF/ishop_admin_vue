@@ -25,7 +25,13 @@ export default {
       'sidebar'
     ]),
     routes() {
-      return this.$router.options.routes
+      let routes = Object.assign({}, this.$router.options.routes)
+      // for(let item in routes){
+      //   for(let v in routes[item].children){
+      //     delete routes[item].children[v].children
+      //   }
+      // }
+      return routes
     },
     isCollapse() {
       return !this.sidebar.opened

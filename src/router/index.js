@@ -47,11 +47,11 @@ export const constantRouterMap = [
         path: 'goods_type',
         name: 'Tree',
         component: () => import('@/views/goods/goods_type/index'),
-        meta: { title: '商品类型'},
+        meta: { title: '商品分类'},
         alwaysShow: true,
         children:[
           {
-            path: 'goods_type_add',
+            path: 'add',
             name: 'goods_type_add',
             hiddens: false,
             component: () => import('@/views/goods/goods_type/add'),
