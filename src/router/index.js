@@ -32,32 +32,36 @@ export const constantRouterMap = [
     }]
   },
   {
-    path:'/',
+    path:'/goods',
     component:Layout,
     name:'Goods',
     meta:{title:'商城管理',icon:'shopping'},
     children: [
       {
-        path: 'goods',
+        path: 'index',
         name: 'Goods',
         component: () => import('@/views/goods/index'),
         meta: { title: '商品管理' }
       },
       {
-        path: 'goods_type',
-        name: 'Tree',
+        path: 'add',
+        name: 'goods_add',
+        hidden:true,
+        component: () => import('@/views/goods/add'),
+        meta: { title: '新增商品'}
+      },
+      {
+        path: 'goods_type/index',
+        name: 'goods_type_index',
         component: () => import('@/views/goods/goods_type/index'),
-        meta: { title: '商品分类'},
-        alwaysShow: true,
-        children:[
-          {
-            path: 'add',
-            name: 'goods_type_add',
-            hiddens: false,
-            component: () => import('@/views/goods/goods_type/add'),
-            meta: { title: '新增'}
-          }
-        ]
+        meta: { title: '商品分类'}
+      },
+      {
+        path: 'goods_type/add',
+        name: 'goods_type_add',
+        hidden:true,
+        component: () => import('@/views/goods/goods_type/add'),
+        meta: { title: '新增分类'}
       },
     ]
   },

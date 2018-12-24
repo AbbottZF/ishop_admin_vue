@@ -8,7 +8,7 @@
         </el-option>
       </el-select>
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="onSearch">搜索</el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" @click="createInfo" type="primary" icon="el-icon-plus">新增</el-button>
+      <el-button class="filter-item" style="margin-left: 10px;" @click="handleLink('/goods/goods_type/add')" type="primary" icon="el-icon-plus">新增</el-button>
     </div>
     <el-table ref="multipleTable" :data="list" tooltip-effect="dark" style="width: 100%;margin: 15px;" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55"></el-table-column>
@@ -57,6 +57,9 @@
       createInfo(){},
       onSearch() {
         this.fetchData()
+      },
+      handleLink(path) {
+        this.$router.push({path:path})
       },
       currentChange(val){
         if(val !== this.current){

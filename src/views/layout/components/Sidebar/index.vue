@@ -25,13 +25,28 @@ export default {
       'sidebar'
     ]),
     routes() {
-      let routes = Object.assign({}, this.$router.options.routes)
+      // let routes = Object.assign({}, this.$router.options.routes)
       // for(let item in routes){
       //   for(let v in routes[item].children){
-      //     delete routes[item].children[v].children
+      //     // console.log(v)
+      //     if(typeof routes[item].children[v].mune_hidden === 'undefined'){
+      //       routes[item].children[v].mune_hidden = false
+      //     }
+      //     if(routes[item].children[v].mune_hidden){
+      //       console.log('--11--',routes[item].children[v])
+      //     }
+      //     // for(let i in routes[item].children[v]){
+      //     //   if(i == 'meta' && typeof routes[item].children[v][i].mune_hidden === 'undefined'){
+      //     //     routes[item].children[v][i].mune_hidden = false
+      //     //   }
+      //     //   if(routes[item].children[v][i].mune_hidden){
+      //     //     console.log('--22--',routes[item].children[v])
+      //     //   }
+      //     // }
       //   }
       // }
-      return routes
+      // console.log(routes)
+      return this.$router.options.routes
     },
     isCollapse() {
       return !this.sidebar.opened
