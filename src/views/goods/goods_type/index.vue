@@ -46,7 +46,7 @@
           name:'',parent_id:'',page:1
         },
         parent_id:'',
-        parent:[{id:'',name:'全部'}],
+        parent:[],
         current:1,
         limit:15,
         total:0,

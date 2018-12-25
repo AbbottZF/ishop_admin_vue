@@ -86,28 +86,34 @@ export const constantRouterMap = [
     ]
   },
   {
-    path:'/user',
+    path:'/system',
     component: Layout,
     name:'User',
     meta:{title:'系统设置',icon:'setting'},
     children: [
       {
-        path: 'user',
+        path: '/admin_user',
         name: 'User',
         component: () => import('@/views/user/index'),
         meta: { title: '管理员' }
       },
       {
-        path: 'role',
+        path: '/role',
         name: 'Role',
         component: () => import('@/views/role/index'),
         meta: { title: '角色管理' }
       },
       {
-        path: 'menu',
+        path: '/menu',
         name: 'Menu',
         component: () => import('@/views/menu/index'),
         meta: { title: '菜单管理' }
+      },
+      {
+        path: '/rules_add',
+        name: 'RulesAdd',
+        component: () => import('@/views/rules/add'),
+        meta: { title: '菜单新增' }
       },
       {
         path: 'config',
