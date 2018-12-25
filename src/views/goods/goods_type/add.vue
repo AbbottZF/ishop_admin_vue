@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="分类名称" prop="name">
-        <el-input v-model="ruleForm.name"></el-input>
+        <el-input v-model="ruleForm.name" style="width:400px;" maxlength="20" clearable></el-input>
       </el-form-item>
       <el-form-item label="上级分类" prop="parent_id">
         <el-select v-model="ruleForm.parent_id" placeholder="请选择上级分类">
@@ -10,10 +10,11 @@
         </el-select>
       </el-form-item>
       <el-form-item label="排序值" prop="sort">
-        <el-input v-model="ruleForm.sort"></el-input>
+        <el-input v-model="ruleForm.sort" style="width:400px;" maxlength="10" clearable></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" :loading="loading" :disabled="loading" @click="submit">保存</el-button>
+        <el-button @click="handleLink('/goods/goods_type/index')">返回</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -58,6 +59,9 @@ export default {
         //     return false;
         //   }
         // });
+      },
+      handleLink(path) {
+        this.$router.push({path:path})
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
