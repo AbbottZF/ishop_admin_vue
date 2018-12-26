@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-button type=“primary” size="medium">新增</el-button>
+      <el-button type=“primary” size="medium" @click="handleLink('/rules_add')">新增</el-button>
     </el-row>
     <el-table :data="tableData" border style="width: 100%;margin:10px auto;">
       <el-table-column prop="date" label="日期" width="180">
@@ -42,6 +42,11 @@
           address: '上海市普陀区金沙江路 1516 弄'
         }]
       }
+    },
+    methods: {
+      handleLink(path) {
+        this.$router.push({path:path})
+      },
     }
   }
 </script>
