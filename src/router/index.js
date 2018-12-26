@@ -104,16 +104,17 @@ export const constantRouterMap = [
         meta: { title: '角色管理' }
       },
       {
-        path: '/menu',
-        name: 'Menu',
-        component: () => import('@/views/menu/index'),
-        meta: { title: '菜单管理' }
+        path: '/rules',
+        name: 'Rules',
+        component: () => import('@/views/rules/index'),
+        meta: { title: '路由管理' }
       },
       {
         path: '/rules_add',
         name: 'RulesAdd',
+        hidden:true,
         component: () => import('@/views/rules/add'),
-        meta: { title: '菜单新增' }
+        meta: { title: '新增路由' }
       },
       {
         path: 'config',
