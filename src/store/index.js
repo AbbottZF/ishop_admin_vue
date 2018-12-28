@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import app from './modules/app'
 import tagsView from './modules/tagsView'
 import goodsType from './modules/goodsType'
+import rules from './modules/rules'
 import user from './modules/user'
 import getters from './getters'
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
     user,
     tagsView,
     goodsType,
+    rules,
   },
   getters
 })
