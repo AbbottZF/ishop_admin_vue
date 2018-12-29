@@ -33,16 +33,11 @@ export function getlist(parent_id){
     })
 }
 
-export function create(name,parent_id,code,sort){
+export function create(param){
     return request({
-        url:'/rules/getpage',
+        url:'/rules/create',
         method:'post',
-        data:{
-            name:name,
-            parent_id:parent_id,
-            code:code,
-            sort:sort
-        }
+        data:param
     })
 }
 

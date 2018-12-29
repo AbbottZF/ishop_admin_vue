@@ -40,7 +40,7 @@
             <el-switch v-model="form.competence" active-text="开" inactive-text="关"></el-switch>
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('form')">立即创建</el-button>
+            <el-button type="primary" @click="submitForm('form')" :disabled="disabled" v-loading.fullscreen.lock="fullscreenLoading">立即创建</el-button>
             <el-button @click="resetForm('form')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -49,6 +49,7 @@
 <script>
   export default {
     created(){
+      // this.fullscreenLoading = true;
       this.fetchData();
     },
     data() {
@@ -66,9 +67,11 @@
             title:'',
             meta:{title:''},
         },
+        fullscreenLoading: false,
         parent:[],
         showleft:true,
         grouplist: [],
+        disabled:false,
         rules: {
           title: [
             { required: true, message: '请输入路由标题', trigger: 'blur' },
@@ -91,6 +94,17 @@
       },
     },
     methods: {
+      openFullScreen2() {
+        const loading = this.$loading({
+          lock: true,
+          text: '上传',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+        setTimeout(() => {
+          loading.close();
+        }, 2000);
+      },
       fetchData(){
         this.$store.dispatch('getGroup', {parent_id:0}).then((res) => {
           this.parent = Object.assign({}, res.data)
@@ -106,11 +120,20 @@
         cb(this.grouplist);
       },
       submitForm(formName) {
+        this.fullscreenLoading = true;
         this.$refs[formName].validate((valid) => {
           if (!valid) {
+            this.fullscreenLoading = false;
             return false;
           }
-
+          this.disabled = true;
+          this.$store.dispatch('create',this.form).then((res)=>{
+            this.disabled = false;
+            this.fullscreenLoading = false;
+          }).catch(()=>{
+            this.disabled = false;
+            this.fullscreenLoading = false;
+          })
         });
       },
       resetForm(formName) {

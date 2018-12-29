@@ -1,4 +1,4 @@
-import { getpage,getcolumn,getlist} from '@/api/rules'
+import { getpage,getcolumn,getlist,create} from '@/api/rules'
 
 const rules = {
     actions:{
@@ -37,9 +37,9 @@ const rules = {
                 })
             })
         },
-        createInfo({ commit },param){
+        create({ commit },param){
             return new Promise((resolve, reject) => {
-                getpage(param.name,param.parent_id,param.code,param.sort).then((response)=>{
+                create(param).then((response)=>{
                     resolve(response)
                 }).catch(error => {
                     reject(error)
