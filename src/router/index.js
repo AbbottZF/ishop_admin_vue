@@ -66,26 +66,6 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/wechat',
-    component: Layout,
-    name:'Wechat',
-    meta:{title:'微信管理',icon:'wechat'},
-    children: [
-      {
-        path: 'wechat_user',
-        name: 'WechatUser',
-        component: () => import('@/views/wechat/user/index'),
-        meta: { title: '粉丝管理'}
-      },
-      {
-        path: 'wechat',
-        name: 'Wechat',
-        component: () => import('@/views/wechat/index'),
-        meta: { title: '微信设置'}
-      },
-    ]
-  },
-  {
     path:'/system',
     component: Layout,
     name:'User',

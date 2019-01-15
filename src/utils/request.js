@@ -4,7 +4,6 @@ import { Message, MessageBox } from 'element-ui'
 import store from '../store'
 import { getToken } from '@/utils/auth'
 
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
@@ -14,7 +13,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      // config.headers['X-Token'] = getToken()
+      config.headers['X-Token'] = getToken()
     }
     if(config.method === 'post'){
       config.data = qs.stringify(config.data)
@@ -30,8 +29,9 @@ service.interceptors.request.use(
 // response 拦截器
 service.interceptors.response.use(
   response => {
-    const res = JSON.parse(response.data)
-    if (res.code !== 1) {
+    // const res = JSON.parse(response.data)
+    const res = response.data;
+    if (res.code !== 1000) {
       Message({
         message: res.msg,
         type: 'error',
@@ -60,7 +60,6 @@ service.interceptors.response.use(
     }
   },
   (error) => {
-    console.log('error',error);
     Message({
       message: error.message,
       type: 'error',
